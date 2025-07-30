@@ -1,4 +1,4 @@
-name: vec2face-plus1
+name: vec2face-plus
 channels:
   - pytorch
   - defaults

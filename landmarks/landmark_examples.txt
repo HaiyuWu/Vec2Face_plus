@@ -1,0 +1,2 @@
+./landmarks/images/2758_0.jpg
+./landmarks/images/2758_1.jpg
