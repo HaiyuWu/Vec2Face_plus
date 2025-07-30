@@ -127,7 +127,7 @@ Please follow the guidance of [SOTA-Face-Recognition-Train-and-Test](https://git
 
 ## Performance
 
-### Datasets in 0.5M scale (TODO)
+### Datasets in 0.5M scale
 This table compares the existing synthetic dataset generation methods on five standard face recognition test sets. The model trained with HSFace10K has better performance on CALFW than that trained with real dataset.
 
 | Training sets        | # images |    LFW    |  CFP-FP   |   CPLFW   |   AgeDB   |   CALFW   |   Avg.    |
