@@ -282,10 +282,9 @@ def main():
         pose_model.train()
         vec2face.eval()
 
-        for step, (im, feat, _, landmark, cur_base) in enumerate(loader):
+        for step, (im, feat, _, landmark) in enumerate(loader):
             im, feat = im.to(device, non_blocking=True), feat.to(device, non_blocking=True)
             landmark = landmark.to(device, non_blocking=True)
-            cur_base = cur_base.to(device, non_blocking=True)
 
             optimizer.zero_grad(set_to_none=True)
 

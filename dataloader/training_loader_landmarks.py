@@ -31,23 +31,10 @@ class LMDB(Dataset):
             self.length = msgpack.loads(txn.get(b"__len__"))
             self.keys = msgpack.loads(txn.get(b"__keys__"))
             self.classnum = msgpack.loads(txn.get(b"__classnum__"))
-        # self.length = 200
         self.mask = None
         if mask is not None:
             self.mask = np.load(mask)
             self.length = len(self.mask)
-        print("Collecting features in group...")
-        self.feature_dict = np.load("/project01/cvrl/hwu6/vol2/vec2face-pami/lmdb_dataset/WebFace4M/center_features.npy",
-                                    allow_pickle=True).item()
-
-        # temp = {}
-        # for key, v_list in self.feature_dict.items():
-        #     mean = np.mean(v_list, axis=0)[None, ...]
-        #     temp[key] = mean.repeat(len(v_list), axis=0)
-        # np.save("/project01/cvrl/hwu6/vol2/vec2face-pami/lmdb_dataset/WebFace4M/center_features", temp)
-        # exit()
-
-        print("Done")
         self.transform = transform
 
     def __getitem__(self, index):
@@ -69,7 +56,6 @@ class LMDB(Dataset):
 
         # load label
         target = unpacked[2]
-        cent_feat = torch.tensor(self.feature_dict[target][0])
 
         landmark = Image.open(io.BytesIO(unpacked[3])).convert("RGB")
 
@@ -77,7 +63,7 @@ class LMDB(Dataset):
             img = self.transform(img)
             landmark = self.transform(landmark)
 
-        return img, feature, target, landmark, cent_feat
+        return img, feature, target, landmark
 
     def __len__(self):
         return self.length
